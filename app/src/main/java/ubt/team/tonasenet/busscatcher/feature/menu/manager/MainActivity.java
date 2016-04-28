@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity
     private FloatingActionButton fab;
     private int currentFragment = 0;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         fab = (FloatingActionButton) findViewById(R.id.nearBusStationButton);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.nearBusStationButton);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,7 +91,9 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
 
         int id = item.getItemId();
+
         fab.setVisibility(View.INVISIBLE);
+
         if (currentFragment != id)
         {
             currentFragment = id;
@@ -108,6 +112,7 @@ public class MainActivity extends AppCompatActivity
 
             }
         }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
