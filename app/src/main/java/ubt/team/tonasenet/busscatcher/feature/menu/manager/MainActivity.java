@@ -22,6 +22,9 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private FragmentManager fragmentManager = getSupportFragmentManager();
+    private FloatingActionButton fab;
+    private int currentFragment = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        fab = (FloatingActionButton) findViewById(R.id.nearBusStationButton);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.nearBusStationButton);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,18 +92,25 @@ public class MainActivity extends AppCompatActivity
 
         int id = item.getItemId();
 
-        if (id == R.id.nav_map) {
-            fragmentManager.beginTransaction().replace(R.id.mainContentFrame, new MapsFragment()).commit();
-        } else if (id == R.id.nav_wifi) {
-            fragmentManager.beginTransaction().replace(R.id.mainContentFrame, new WiFiFragment()).commit();
-        } else if (id == R.id.nav_piket) {
+        fab.setVisibility(View.INVISIBLE);
 
-        } else if (id == R.id.nav_manage) {
+        if (currentFragment != id)
+        {
+            currentFragment = id;
+            if (id == R.id.nav_map) {
+                fragmentManager.beginTransaction().replace(R.id.mainContentFrame, new MapsFragment()).commit();
+                fab.setVisibility(View.VISIBLE);
+            } else if (id == R.id.nav_wifi) {
+                fragmentManager.beginTransaction().replace(R.id.mainContentFrame, new WiFiFragment()).commit();
+            } else if (id == R.id.nav_piket) {
 
-        } else if (id == R.id.nav_share) {
+            } else if (id == R.id.nav_manage) {
 
-        } else if (id == R.id.nav_send) {
+            } else if (id == R.id.nav_share) {
 
+            } else if (id == R.id.nav_send) {
+
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

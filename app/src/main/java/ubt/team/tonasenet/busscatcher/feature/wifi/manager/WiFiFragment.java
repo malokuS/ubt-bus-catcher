@@ -30,6 +30,13 @@ public class WiFiFragment extends Fragment implements View.OnClickListener {
         wifiSwitch = (Switch) view.findViewById(R.id.wifiSwitch);
         wifiSwitch.setOnClickListener(this);
 
+        if(wiFiController.getWiFiStatus())
+        {
+            wifiSwitch.setChecked(true);
+        }else{
+            wifiSwitch.setChecked(false);
+        }
+
         return view;
     }
 

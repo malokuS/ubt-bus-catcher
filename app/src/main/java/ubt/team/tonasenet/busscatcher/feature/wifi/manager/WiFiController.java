@@ -58,6 +58,12 @@ public class WiFiController
         }
     }
 
+    public boolean getWiFiStatus()
+    {
+        boolean wiFiStatus = wifiManager.isWifiEnabled();
+        return wiFiStatus;
+    }
+
     public void turnWifiOn()
     {
 
