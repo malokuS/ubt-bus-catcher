@@ -1,8 +1,10 @@
-package ubt.team.tonasenet.busscatcher;
+package ubt.team.tonasenet.busscatcher.feature.map.manager;
 
 /**
  * Created by malokuselim on 1/5/16.
  */
+
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.Service;
 import android.content.Context;
@@ -11,12 +13,14 @@ import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
 
-public class GPSTracker extends Service implements LocationListener {
+public class GPSTracker extends Service implements LocationListener
+{
 
     private final Context mContext;
 
@@ -42,12 +46,14 @@ public class GPSTracker extends Service implements LocationListener {
     // Declaring a Location Manager
     protected LocationManager locationManager;
 
-    public GPSTracker(Context context) {
+    public GPSTracker(Context context)
+    {
         this.mContext = context;
         getLocation();
     }
 
-    public Location getLocation() {
+    public Location getLocation()
+    {
         try {
             locationManager = (LocationManager) mContext
                     .getSystemService(LOCATION_SERVICE);
@@ -61,7 +67,8 @@ public class GPSTracker extends Service implements LocationListener {
                     .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
 
-            if (!isGPSEnabled && !isNetworkEnabled) {
+            if (!isGPSEnabled && !isNetworkEnabled)
+            {
                 // no network provider is enabled
             } else {
                 this.canGetLocation = true;
@@ -99,7 +106,8 @@ public class GPSTracker extends Service implements LocationListener {
                 }
             }
 
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
         }
         return location;
     }
@@ -108,8 +116,10 @@ public class GPSTracker extends Service implements LocationListener {
      * Stop using GPS listener Calling this function will stop using GPS in your
      * app.
      * */
-    public void stopUsingGPS() {
-        if (locationManager != null) {
+    public void stopUsingGPS()
+    {
+        if (locationManager != null)
+        {
             locationManager.removeUpdates(GPSTracker.this);
         }
     }
@@ -117,8 +127,10 @@ public class GPSTracker extends Service implements LocationListener {
     /**
      * Function to get latitude
      * */
-    public double getLatitude() {
-        if (location != null) {
+    public double getLatitude()
+    {
+        if (location != null)
+        {
             latitude = location.getLatitude();
         }
         // return latitude
@@ -128,8 +140,10 @@ public class GPSTracker extends Service implements LocationListener {
     /**
      * Function to get longitude
      * */
-    public double getLongitude() {
-        if (location != null) {
+    public double getLongitude()
+    {
+        if (location != null)
+        {
             longitude = location.getLongitude();
         }
 
@@ -150,7 +164,8 @@ public class GPSTracker extends Service implements LocationListener {
      * Function to show settings alert dialog On pressing Settings button will
      * lauch Settings Options
      * */
-    public void showSettingsAlert() {
+    public void showSettingsAlert()
+    {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
 
         // Setting DialogHelp Title
@@ -183,7 +198,8 @@ public class GPSTracker extends Service implements LocationListener {
     }
 
     @Override
-    public void onLocationChanged(Location location) {
+    public void onLocationChanged(Location location)
+    {
         float bestAccuracy = -1f;
         if (location.getAccuracy() != 0.0f
                 && (location.getAccuracy() < bestAccuracy) || bestAccuracy == -1f) {
